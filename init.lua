@@ -208,7 +208,13 @@ require('lazy').setup({
     config = function()
       require('onedark').setup {
         -- Set a style preset. 'dark' is default.
-        style = 'dark', -- dark, darker, cool, deep, warm, warmer, light
+        style = 'deep', -- dark, darker, cool, deep, warm, warmer, light
+        -- transparent = true,
+        colors = {
+          bright_orange = "#ff8800",    -- define a new color
+          green = '#00ffaa',           
+          brown = 'c95c1b', -- redefine an existing color
+        },
       }
       require('onedark').load()
     end,
