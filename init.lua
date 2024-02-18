@@ -276,6 +276,30 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+  {
+  "nvim-treesitter/nvim-treesitter-context",
+  --event = "LazyFile",
+  enabled = true,
+  opts = { mode = "cursor", max_lines = 3 },
+--  keys = {
+--    {
+--      "<leader>ut",
+--      function()
+--        local Util = require("lazyvim.util")
+--        local tsc = require("treesitter-context")
+--        tsc.toggle()
+--        if Util.inject.get_upvalue(tsc.toggle, "enabled") then
+--          Util.info("Enabled Treesitter Context", { title = "Option" })
+--        else
+--          Util.warn("Disabled Treesitter Context", { title = "Option" })
+--        end
+--      end,
+--      desc = "Toggle Treesitter Context",
+--      },
+--    },
+  }
+
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -368,6 +392,9 @@ require('telescope').setup {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
       },
+    },
+    layout_config = {
+      vertical = { width = 0.5 }
     },
   },
 }
@@ -513,6 +540,20 @@ vim.defer_fn(function()
   }
 end, 0)
 
+require'treesitter-context'.setup{
+  enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+  max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+  min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+  line_numbers = true,
+  multiline_threshold = 20, -- Maximum number of lines to show for a single context
+  trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+  mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+  -- Separator between context and content. Should be a single character string, like '-'.
+  -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+  separator = nil,
+  zindex = 20, -- The Z-index of the context window
+  on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+}
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
