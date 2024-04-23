@@ -209,7 +209,7 @@ require('lazy').setup({
       require('onedark').setup {
         -- Set a style preset. 'dark' is default.
         style = 'deep', -- dark, darker, cool, deep, warm, warmer, light
-        -- transparent = true,
+        transparent = true,
         colors = {
           bright_orange = "#ff8800",    -- define a new color
           green = '#00ffaa',           
@@ -394,7 +394,7 @@ require('telescope').setup {
       },
     },
     layout_config = {
-      vertical = { width = 0.5 }
+     height = 40,
     },
   },
 }
